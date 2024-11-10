@@ -2,7 +2,7 @@
 //  HUNTERxHUNTERApp.swift
 //  HUNTERxHUNTER
 //
-//  Created by 翁子翔 on 2024/11/10.
+//  Created by 翁子翔 on 2024/10/23.
 //
 
 import SwiftUI
