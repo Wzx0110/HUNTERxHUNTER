@@ -8,27 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var startApp = true // 控制開頭動畫
+
     var body: some View {
-        TabView {
-            Tab("介紹", systemImage: "book") {
-                MainView()
+        ZStack {
+            TabView {
+                Tab("介紹", systemImage: "book") {
+                    MainView()
+                }
+                Tab("角色", systemImage: "person.3") {
+                    CharacterView()
+                }
+                Tab("世界觀", systemImage: "map") {
+                    MapView()
+                }
+                Tab("念能力", systemImage: "bonjour") {
+                    AbilityView()
+                }
+                .defaultVisibility(.hidden, for: .tabBar)
             }
-            Tab("角色", systemImage: "person.3") {
-                CharacterView()
+            .tabViewStyle(.sidebarAdaptable)
+            .accentColor(.accentColor)
+        
+            // 顯示開頭動畫，點擊畫面後消失
+            if startApp {
+                StartView()
+                    .transition(.opacity)
+                    .onTapGesture {
+                        withAnimation {
+                            startApp = false
+                        }
+                    }
             }
-            Tab("世界觀", systemImage: "map") {
-                MapView()
-            }
-            Tab("念能力", systemImage: "bonjour") {
-                AbilityView()
-            }
-            .defaultVisibility(.hidden, for: .tabBar)
         }
-        .tabViewStyle(.sidebarAdaptable)
-        .accentColor(.accentColor) //light黃色dark綠色
     }
 }
-
 
 #Preview {
     ContentView()
